@@ -1,0 +1,39 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{font-family:Verdana;margin:0;padding:0;}
+fieldset,img{border:0 none;}
+button{cursor:pointer;line-height:1.2;}
+.mod{width:100%;margin-bottom:1.4em;}
+#player{height:350px;position:relative;left:0;top:0;background: none repeat scroll 0 0 #E9EEF2; color: #666666;line-height:1.6; }
+#player .wrapper{position:relative;left:0;top:0;height:350px;}
+.player_outer_wrapper{position:absolute;right:0;width:447px;height:186px;top:-55px;}
+.player_inner_wrapper{background:#fff;width:420px;height:428px;-moz-box-shadow:1px 1px 10px #ccc;margin-bottom:64px;-webkit-box-shadow:1px 1px 10px #ccc;font-size:16px;border:1px solid #eee;top:-57px;}
+.cover-flow{position:relative;overflow:hidden;font-size:16px;display:block;font-family:Verdana;margin-left:99px;}
+.cover-flow-t{font-size:16px;margin-top:44px;margin-left:98px;}
+body{font:12px/1.6 arial,helvetica,sans-serif;margin-top:0;}
+a{color:#369;}
+a:visited,a:link{text-decoration:none;}
+.wrapper{width:880px;margin:0 auto;}
+#header,#content,#footer{width:100%;}
+#header{width:100%;background:none repeat scroll 0 0 transparent;margin:0 0 40px;padding:0;}
+.top-nav{clear:both;width:100%;color:#d4d4d4;margin-bottom:20px;height:30px;border-bottom:1px dashed #d4d4d4;}
+#header .wrapper{position:relative;margin:30px auto 10px;}
+#header .top-nav{border-bottom:medium none;color:#737373;height:78px;}
+#header .login{float:right;margin:0 23px 0 0;}
+#db-song-list{width:380px;position:relative;left:0;top:24px;}
+.submit{text-align:right;line-height:40px;margin-top:27px;border-top:1px solid #eee;padding:17px 14px 14px;}
+.submit a{float:left;}
+.comwap{width:306px;margin:auto;}
+.cominp{margin-top:20px;}
+.cominp textarea{overflow:hidden;margin-top:4px;font-size:16px;width:300px;border:1px solid #ddd;height:72px;padding:2px;}
+.cominp input{border:1px solid #ddd;font-size:16px;width:120px;margin-left:10px;padding:2px;}
+.cominp select{border:1px solid #ddd;font-size:16px;margin-left:10px;width:128px;padding:1px;}
+.comtit{border-bottom:1px solid #eee;padding:14px;}
+.comimg{float:left;width:410px;height:129px;background:url(/media/i/gaoding.png);}
+#male1,#male2{margin-right:5px;margin-left:44px;}
+#female1,#female2{margin-left:57px;margin-right:5px;}
+#female1,#female2,#male1,#male2{width:auto;border:0 solid #eee;}
+.tr{text-align:right;}
+.tip{margin-left:8px;color:#999;}
+.Err{margin-left:8px;color:red;}
+#mail{border:1px solid #ddd;margin-left:8px;width:250px;font-size:18px;outline:1px solid #fd0;padding:2px;}
+.itx18{font-size:18px;border:1px solid #ccc;}
+.hd:after,.bd:after,.ft:after,.mod:after,.mod .hd:after,.mod .bd:after,.mod .ft:after,#header:after,#content:after,#footer:after{content:" ";display:block;clear:both;height:0;}

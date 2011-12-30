@@ -1,0 +1,1590 @@
+body{
+    padding:0;
+    margin:0;
+    font-size:18px;
+    font-family:Times;
+    position:relative;
+    color:#333;
+    background:#efefef;
+}
+
+body.sansSerif{
+    font-family: "Helvetica Neue", Arial, Sans-serif;
+    font-size:16px;
+}
+
+.project, .children{
+    display:none;
+}
+
+.parent, .selected .project, .selected, .selected .open > .children, .parent > .children, .selected > .children{
+    display:block;
+}
+
+.project.done{
+    display:none;
+}
+
+.showCompleted .selected .project.done, .parent.done, .selected.done{
+    display:block;
+}
+
+body.searching .selected .project, body.searching .selected .project.done{
+    display:none;
+}
+
+body.searching .selected .project.matches, body.searching .selected .project.descendantMatches{
+    display:block;
+}
+
+
+body.searching .selected .project.matches.done, body.searching .selected .project.descendantMatches.done{
+    display:none;
+}
+
+body.searching.showCompleted .selected .project.matches.done, body.searching.showCompleted .selected .project.descendantMatches.done{
+    display:block;
+}
+
+
+body.searching .add.lastChild{
+    display:none;
+}
+
+.editor{
+    position:absolute;
+    padding:0px;
+    z-index:2;
+}
+
+.editor.hovered{
+    z-index:3;
+}
+
+.editor.fixed{
+    z-index:1;
+}
+
+.editor > textarea {
+    display:block;
+    background:transparent;
+    resize:none;
+    outline:0;
+    border:0;
+    padding:0;
+    margin:0;
+    width:100%;
+    height:100%;
+    font-family:inherit;
+    font-size:inherit;
+    line-height:inherit;
+    letter-spacing:inherit;
+    color: inherit;
+    overflow:hidden;
+    position:relative;
+    word-wrap:break-word;
+}
+
+.mozilla .editor > textarea{
+    /* Firefox adds 1 extra pixel to the left and right of textareas. */
+    left:-1px;
+}
+
+    #visible{
+        width:700px;
+        position:relative;
+	background:#fff;
+	padding:0 50px 10px;
+	border-bottom:1px solid #ccc;
+
+	/* These margins get overridden by the JS because they can get set 
+	   to fractional values, which messes up textarea positioning. */
+	margin-left:auto;
+	margin-right:auto;
+    }
+
+    #header{
+        margin:0px 0 -1px 0;
+        padding:15px 0 5px 0;
+        position:relative;
+        border-bottom:1px solid #eee;
+	height:23px;
+    }
+    
+    /* Prevents selecting text by dragging and double-clicking. */
+    .notSelectable{
+	/* What's the equivalent for IE?  */
+	-moz-user-select:none; /* mozilla browsers */
+	-khtml-user-select:none; /* webkit browsers */
+    }
+
+    #logo{
+        height: 18px;
+        width: 100px;
+        clear:both;
+        display:inline-block;
+    }
+
+    #logo img{
+	height:19px;
+	width:94px;
+    }
+    
+    .video{
+	text-align:center;
+    }
+
+    #video_player{
+	width:480px;
+	height:300px;
+	border:1px solid #666;
+	/* glow */
+	-webkit-box-shadow:0px 3px 40px #113;
+	-moz-box-shadow: 0 3px 40px #113;
+	box-shadow:0 3px 40px #113;
+	margin-left:115px;
+    }
+
+    .startPrompt{
+	padding: 15px 0;
+	background: #ccc;
+	border: 1px solid #aaa;
+	margin: 20px 0 0;
+	color: #333;
+    }
+
+    .startPrompt a.startLink{
+	color:#222;
+	text-decoration:underline;
+    }
+    
+    #helpWindow{
+	text-align:center;
+    }
+    
+    #helpWindow .pane{
+	margin-top:20px;
+    }
+    
+    #howTo table{
+	margin:0 20px 10px 20px;
+    }
+    
+    #howTo table td.commandName{
+	width:20%;
+	font-weight:bold;
+	text-align:right;
+	background-color:#fcfcfc;
+    }
+    
+    #howTo table td.commandDescription{
+	width:70%;
+	text-align:left;
+    }
+    
+    td{
+	padding:10px 20px;
+	border:1px solid #ddd;
+	font-size:14px
+    }
+    
+    td.first, td.second, td.third{
+	border-left:none;
+	border-right:none;
+	border-top:none;
+	border-bottom:1px solid #ddd;
+    }
+    
+    #howTo > em:hover{
+	cursor:pointer;
+	cursor:hand;
+	color:#333;
+    }
+
+    #howTo .expandCollapseShortcutMozilla{
+	display:none;
+    }
+    body.mozilla #howTo .expandCollapseShortcutMozilla{
+	display:inline-block;
+    }
+    body.mozilla #howTo .expandCollapseShortcut{
+	display:none;
+    }
+
+    #helpWindow h1.header{
+	 font-family:arial;
+	 font-size:25px;
+	 margin-bottom:20px;
+    }
+    
+    .helpEmail{
+	text-align:center;
+    }
+
+    h1, h2, h3, h4, h5{
+	font-family:arial;
+	}
+
+    .helpEmail a{
+	color:#005;
+	text-decoration:underline;
+	
+    }
+    
+    #helpButton{
+	position:absolute;
+	top:50px;
+	left:100%;
+	background:#36c;
+	border:2px solid #349;
+	border-top-color:#67f;
+	font-size:15px;
+	font-family:Arial;
+	color:#fff;
+	padding:6px 12px;
+	border-bottom-right-radius:5px;
+	-moz-border-radius-bottomright:5px;
+	border-top-right-radius:5px;
+	-moz-border-radius-topright:5px;
+	border-left:none;
+	z-index:11;
+    }
+
+    #helpButton:hover{
+	background-color:#34a;
+    }
+
+    .popup{
+	display:none;
+    }
+
+    .popup h1{
+	margin-bottom:10px;
+    }
+
+    .ui-dialog.noClose .ui-dialog-titlebar-close{
+	display:none;
+    }
+    
+    #loginPopup .loginForm .loginFormErrorMessage{
+	display:none;
+	color:red;
+	font-size:14px;
+	text-align:center;
+	margin-bottom:15px;
+    }
+
+    #loginPopup .loginForm .loginFormLabel{
+	color:#555;
+	font-size:14px;
+    }
+
+    #loginPopup .loginForm .loginFormPasswordInput{
+	margin-top:5px;
+	font-size:20px;
+	width:200px;
+    }
+
+    #loginPopup .loginFormForgotPasswordLink{
+	display:block;
+	color:#005;
+	font-size:14px;
+	margin-top:10px;
+	text-decoration:underline;
+	text-align:right;
+    }
+
+    #sharePopup{
+	font-size:15px;
+	line-height:20px;
+	padding-top:20px;
+	overflow:hidden;
+    }
+    
+    #sharePopup .section.options div{
+	display:inline-block;
+    }
+
+    #sharePopup .shared_settings{
+	display:none;
+    }
+
+    #sharePopup.shared .shared_settings{
+	display:block;
+    }
+
+    #sharePopup.shared .share_prompt{
+	display:none;
+    }
+
+
+    #sharePopup .share_waiting{
+	display:none;
+    }
+    
+    #sharePopup.waiting .share_waiting{
+	display:block;
+	text-align:center;
+    }
+    
+    #sharePopup.waiting .share_prompt, #sharePopup.waiting .shared_settings{
+	display:none;
+    }
+
+    #sharePopup input.shareLink{
+	display:block;
+	padding:5px;
+	font-size:18px;
+	width:95%;
+    }
+
+    .is_editable.buttonset .buttons{
+	margin-right:5px;
+    }
+
+    .is_editable.buttonset{
+	margin-top:10px;
+    }
+    
+    #exportPopup form{
+	text-align: center;
+	background:#EEE;
+	border-bottom:1px solid #CCC;
+	border-left:1px solid #CCC;
+	border-right:1px solid #CCC;
+	font-size: 12pt;
+	padding: 5px 0px;
+    }
+
+    #exportPopup .instructions{
+	color:#666;
+	font-size:12pt;
+	margin-top:10px;
+	text-align:center;
+    }
+
+    #exportPopup .previewWindow{
+	border:1px solid #aaa;
+	height:200px;
+	overflow:scroll;
+	padding:10px;
+	/* Need to set font back to body font because dialogs get a sans serif
+	   font. */
+	font-family:Times;
+    }
+
+    #exportPopup .previewWindow > div{
+	white-space:nowrap;
+	font-size:12pt;
+    }
+
+    #exportPopup .previewWindow > pre{
+	word-wrap:normal;
+	font-size:10pt;
+    }
+
+    #exportPopup .previewWindow ul{
+	list-style:disc;
+    }
+
+    #exportPopup .previewWindow li{
+	margin:4px 0 4px 20px;
+    }
+    
+    #exportPopup .previewWindow > div > .name{
+	display:block;
+	font-size:16pt;
+	margin-bottom:10px;
+    }
+
+    #exportPopup .previewWindow > div > .note{
+	font-size:12pt;
+	margin-bottom:10px;
+    }
+
+    #exportPopup .previewWindow .name.done, .nameEditor.doneEditor textarea{
+	text-decoration:line-through;
+	color:#666;
+    }
+    
+    #exportPopup .previewWindow .note{
+	margin-top:2px;
+	font-size:9pt;
+	color:#666;
+    }
+
+    #exportPopup .previewWindow .tagline{
+	margin-top:15px;
+	color:#666;
+	font-size:10pt;
+	font-style:italic;
+    }
+
+    #exportPopup .previewWindow .tagline a{
+	text-decoration:underline;
+    }
+
+    #logout{
+	position:absolute;
+	right:0;
+    }
+    
+    #logo:hover{
+        cursor:pointer;
+    }
+
+    #footer{
+        border-top:1px solid #ccc;
+        padding:10px 0 10px;
+        margin:10px 0 0;
+        position:relative;
+	text-align:center;
+    }
+    
+    #footer a{
+        color:#666;
+    }
+
+    #bottomLinks{
+	text-align:center;
+	margin-top:10px;
+	padding-bottom:20px;
+    }
+
+    #bottomLinks a{
+	color:#666;
+    }
+
+    #siteSlogan{
+        font-size:.7em;
+        color:#666;
+        font-style: none;
+        font-weight:normal;
+	position:absolute;
+	left:0;
+    }
+    
+    .selected{
+        border-top:1px solid #eee;
+    }
+    
+    .selected.project > .name{
+        font-size: 36px;
+        padding:10px 0;
+        border-color:#aaa;
+        margin-left:-100px;
+        padding-left:100px;
+    }
+
+    .selectedEditor > textarea{
+	font-size:36px;
+    }
+    
+    .parentArrow{
+	opacity:0;
+	filter: alpha(opacity=0);
+
+        color:#aaa;
+        margin:0 5px;
+    }
+    
+    .parent > .name > .parentArrow{
+	opacity:1;
+	filter: alpha(opacity=1);
+	
+        display:inline;
+    }
+
+    .selected .parentArrow{
+	position:absolute;
+	display:block;
+	right:-55px;
+	top:0;
+	width:800px;
+	height:100%;
+    }
+    
+    .saveButton, .showCompletedButton{
+	display:block;
+	float:right;
+
+	margin-left:10px;
+	margin-top:-4px;
+	padding:3px 0px;
+
+	font-family:Arial;
+	font-size:13px;
+	text-align:center;
+
+        -moz-border-radius:5px;
+        -webkit-border-radius:5px;
+        -khtml-border-radius:5px;
+	border-radius:5px;
+    }
+
+    /* Clickable and hover for clickable states */
+    .saveNow .saveButton, .showCompletedButton{
+	background-color:#ddd;
+	border:1px solid #aaa;
+	color:#555;
+    }
+    
+    .saveNow .saveButton:hover, .showCompletedButton:hover {
+	background-color:#ccc;
+	text-decoration:none;
+    }
+
+    .saveNow .saveButton:hover, .showCompletedButton:hover{
+	cursor:pointer;
+    }
+
+    .showCompletedButton{
+	padding:3px 10px;
+	width:118px;
+    }
+
+    /* Non-clickable and hover for these */
+
+    .saveButton{
+	width:75px;
+	background:#eee;
+	border:1px solid #ccc;
+	color:#999;
+    }
+
+    .saveButton_saveNow, .saveButton_saving, .saveButton_saved{
+	display:none;
+    }
+    .saveNow .saveButton_saveNow{
+	display:block;
+    } 
+
+    .saving .saveButton_saving, .saved .saveButton_saved{
+	display:block;
+    }
+
+    .saving .saveButton_saving{
+	font-style:italic;
+    }
+
+    .saving .saveButton:hover, .saved .saveButton:hover{
+	cursor:default;
+    } 
+
+    #searchForm{
+	float:right;
+	position:relative;
+	margin-top:-4px;
+    }
+
+    #searchForm:hover{
+	cursor:text;
+    }
+    
+    #searchBox{
+	position:relative;
+	background-color:transparent;
+	border: 1px solid #888;
+	width: 200px;
+	padding: 2px 4px;
+	font-size: 13px;
+	font-family: Arial;
+	opacity:.5;
+	/* We need to zero out the margin for Chrome, which has a default. */
+	margin:0;
+
+	border-radius:5px;
+        -moz-border-radius:5px;
+        -webkit-border-radius:5px;
+        -khtml-border-radius:5px;
+    }
+
+    #searchBox:hover, #searchForm.clearPrompt #searchBox{
+	opacity:1;
+    }
+
+    #searchPrompt{
+	position: absolute;
+	bottom: 4px;
+	left: 6px;
+	font-size: 13px;
+	font-family: Arial;
+	opacity:0.8;
+	color:#999;
+    }
+
+    #searchForm:hover #searchPrompt{
+	opacity:1;
+    }
+
+    #searchForm.clearPrompt #searchPrompt{
+	display:none;
+    }
+
+    #searchCancel{
+	position:absolute;
+	top:0px;
+	right:0px;
+	font-family:Arial;
+	font-size:13px;
+	height:20px;
+	color:#AAA;
+	line-height:19px;
+	padding:0px 9px;
+	display:none;
+    }
+
+    #searchCancel:hover{
+	cursor:pointer;
+	color:#666;
+    }
+
+    body.searching #searchCancel{
+	display:block;
+    }
+
+    a.button{
+        color:#aaa;
+        font-size:.7em;
+        font-style:italic;
+    }
+    
+    a.button:hover{
+        text-decoration:underline;
+        color:#666;
+        cursor:pointer;
+    }
+    
+    .expand.button{
+        color:#eee;
+        background:#333333;
+        font-size:16px;
+        display:inline-block;
+        -moz-border-radius:5px;
+        -webkit-border-radius:5px;
+        -khtml-border-radius:5px;
+	border-radius:5px;
+        padding:5px 7px;                
+        opacity:.5;
+
+	/*behavior:url(/media/css/border-radius.htc);*/
+    }
+        
+    .add .button{
+	font-size:1.5em;
+	text-indent:-9999px;
+	position:relative;
+	top:.1em;
+	left:.1em;
+    }
+
+    .add:hover *, .add a.button:hover{
+        color:#333;
+        text-decoration:none;
+	cursor:pointer;
+	cursor:hand;
+    }
+
+    .content .contentLink{
+	/* Need to set position for z-index to work. */
+	position:relative;
+	z-index:7;
+        text-decoration:underline;
+    }
+
+    .content .contentLink:hover{
+	cursor:pointer;
+    }
+
+    .content.editing .contentLink{
+	/* Hide links when content is being edited so they can be clicked into
+	   to edit. */
+	visibility:hidden;
+    }
+
+    .content .contentTag{
+	position:relative;
+	color:#999;
+    }
+
+    /* Make tags transparent like the rest of content when editing. */
+    .content.editing .contentTag{
+	color:transparent;
+    }
+
+    .content .contentTagText{
+	text-decoration:underline;
+    }
+
+    .content .contentTagClickable{
+	/* Need to set position for z-index to work. */
+	position:absolute;
+	z-index:7;
+
+	/* Overlay clickable area on tag text. */
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+
+	padding:0 1px;
+	margin:0 -1px;
+        -moz-border-radius:3px;
+        -webkit-border-radius:3px;
+        -khtml-border-radius:3px;
+	border-radius:3px;
+
+	background-color:#000;
+	opacity:0;
+	filter: alpha(opacity=0);
+	*filter: alpha(opacity=0);
+	
+    }
+
+    .content .contentTagClickable:hover{
+	cursor:pointer;
+	opacity:0.05;
+    }
+
+    .content.editing .contentTagClickable{
+	/* Hide tags when content is being edited so they can be clicked into
+	   to edit. */
+	visibility:hidden;
+    }
+    
+    .content .contentMatch{
+	background-color:#ff9;
+	text-decoration:inherit;
+    }
+
+    .noted > .notes > .content{
+	white-space:pre-wrap;
+	height:17px;
+	min-height:17px;
+	overflow:hidden;
+        font-size:14px;
+	line-height:17px;
+        color:#666;
+    }
+
+    .noteEditor > textarea{
+        font-size:14px;
+	line-height:17px !important;
+        color:#666;
+    }
+
+    .notes{
+        display:none;
+        position:relative;
+    }
+
+    /* Expand notes that are clicked into, selected, or match the current
+       search. */
+    .noted > .notes > .content.editing, .selected > .notes, body.searching .notes.matches > .content{
+	height:auto;
+	overflow:visible;
+    }
+
+    .open > .notes{
+        max-height:none;
+    }
+    
+    .noted > .notes{
+        display:block;
+        margin:0px 0px 0px 25px;
+    }
+
+.content{
+    display:block;
+    word-wrap:break-word;
+    position:relative;
+    z-index:6;
+}
+
+.content.editing{
+    color:transparent !important;
+    /* Set z-index:inherit rather than z-index:0 because we need links
+       under content to have no "z-index frame", which allows us to
+       position them above anything on the page, namely editors. */
+    z-index:inherit;
+}
+
+.content.hovered{
+    z-index:inherit;
+}
+
+    
+    .selected > .notes{
+	margin:5px 0 10px 0;
+	padding-top:4px;
+    }
+
+    .selected > .notes > .content, .selected > .notes > .content.editing{
+	height:auto !important;
+	font-size:18px;
+	line-height:22px;
+    }
+
+    .selectedEditor.noteEditor > textarea{
+	font-size:18px;
+	line-height:22px !important; /* We've decided it is bad to use !important. Oy. @Jesse */
+    }
+    
+    .noted.parent > .notes{
+        display:none;
+    }
+
+    .editor{
+	opacity:0;
+	filter: alpha(opacity=0);
+	*filter: alpha(opacity=0);
+    }
+
+    .editor.fixed{
+	opacity:1;
+	filter:none;
+	*filter: none;
+    }
+    
+    .small{
+        font-size:.7em;
+        color:#666;
+    }
+    
+    .selected .project .project{
+        margin-left:10px;
+    }
+
+    #workflowy{
+	min-height:900px;
+    }
+    
+    #workflowy > .add{
+        margin:5px 0;
+    }
+    
+    #sortDrop{
+	position:relative;;
+        margin:-1px 0 0 20px;
+        height:1px;
+	overflow:visible;
+    }
+
+    #sortDrop div{
+	position:absolute;
+	top:2px;
+	left:0px;
+	background:#666;
+	height:2px;
+	width:100%;
+    }
+   
+    a.archive{
+        display:none;
+    }
+    
+    .childrenEnd{
+	display:none;
+        height:10px;
+	margin-left:-300px;
+	margin-top:-5px;
+    }
+
+    .selected .childrenEnd{
+	display:block;
+    }
+    
+    .parent > .children{
+        padding:0;
+    }
+    
+    .children{
+        margin-left:10px;
+        padding-left:15px;
+	border-left:1px solid #eee;
+    }
+    
+    .selected.project > .children, .parent.project > .children{
+        border-left:none;
+        margin-left:0px;
+        padding:0px;
+    }
+
+    #controls a{
+        z-index:1;
+        position:relative;
+        display:inline-block;
+        width:20px;
+        height:20px;
+        cursor:pointer; 
+    }
+
+    #controlsLeft, #controlsRight, #controlsBottom{
+        position:absolute;
+        top:0;
+	z-index:8;
+    }
+
+    .name.hovered .bullet{
+	z-index:9;
+    }
+
+    #controlsLeft{
+        left:-49px;
+	top:5px;
+        padding: 0px 10px 0 0;
+        width:100px;
+    }
+   
+
+    #controlsLeft a{
+        float:right;
+    }
+
+    .selected > .name > #controls > #controlsLeft{
+	left:-20px;
+    }
+
+    .selected > .name > #controls > #controlsLeft, .selected > .name > #controls > #controlsRight{
+        top:15px;
+    }
+    
+    .selected > .name > #controls #expandButton{
+	display:none;
+    }
+    
+    #workflowy > .name > #controls > #controlsRight{
+        display:none;
+    }
+    
+    #workflowy.selected > .name{
+        display:none;
+    }
+
+    body.shared #workflowy.selected > .name{
+	display:block;
+    }
+    
+    #workflowy.selected{
+        margin-top:10px;
+	border-top:none;
+    }
+    
+    #controls #note{
+        background:transparent url(/media/i/icons_color.gif);
+        text-indent:-9999px;
+        background-position:-36px -36px;
+    }
+
+    .selected > .name > #controls #move{
+	display:none;
+    }
+    
+    #controls #move{
+        background:transparent url(/media/i/icons_color.gif);
+        text-indent:-9999px;
+        background-position:-142px -36px;
+	position:relative;
+	z-index:8;
+    }
+
+    body.disable_editing #controls #move{
+	display:none;
+    }
+
+    #controls #delete{
+        background:transparent url(/media/i/icons_color.gif);
+        text-indent:-9999px;
+        background-position:-36px 2px;
+    }
+    
+    body.shared #controls .share{
+	display:none;
+    }
+
+    #controls .share span{
+	display:none;
+    }
+
+    /* Say "Shared" instead of "Share" if item is shard. */
+    .project.shared > .name > #controls .share span{
+	display:inline;
+    }
+
+    /* Highlight "Shared" in blue. */
+    .project.shared > .name #newControls a.share{
+	font-weight:bold;
+	text-shadow:#99F 1px 1px 2px;
+    }
+    
+    /* newControls drawer */
+    #newControls{
+	position:relative;
+	left:-10px;
+	margin-right:-9px;
+	top:-2px;
+    }
+
+    /* Don't show control tray if editing is disabled. */
+    body.disable_editing #newControls{
+	display:none;
+    }
+
+    #newControls.hovered .panel{
+	display:block;
+    }
+
+    #newControls .panel .more{
+	height:10px;
+	width:20px;
+	margin-left:25px;
+    }
+
+    #newControls #moreControls a.export, #newControls #moreControls a.delete{
+	display:none;
+    }
+
+    #newControls #moreControls:hover a.export, #newControls #moreControls:hover a.delete{    
+	display:block;
+    }
+
+    #newControls #moreControls:hover a.more{
+	display:none;
+    }
+    
+    #newControls.hovered .handle{
+	position:absolute;
+	left:100%;
+	width:32px;
+	height:18px;
+	margin-left:-13px;
+	background:#ddd;
+	border-bottom:1px solid #bbb;
+	border-top:1px solid #bbb;
+	border-right:1px solid #bbb;
+	border-bottom-right-radius:15px;
+	-moz-border-radius-bottomright:15px;
+	border-top-right-radius:15px;
+	-moz-border-radius-topright:15px;
+	display:block;
+    }
+
+    #newControls .handle{
+	display:none;
+    }
+
+    .selected > .name #newControls.hovered .handle{
+	width:0px;
+    }
+
+    .selected > .name #newControls{
+	left:2px;
+    }
+
+    #newControls .panel{
+	display:none;
+	font-family:Arial;
+	background: #ddd;
+	border:1px solid #bbb;
+	width: 80px;
+	padding:10px 0 5px 15px;
+	border-top-left-radius:15px;
+	-moz-border-radius-topleft:15px;
+	border-bottom-left-radius:15px;
+	-moz-border-radius-bottomleft:15px;
+	border-bottom-right-radius:15px;
+	-moz-border-radius-bottomright:15px;
+	margin-bottom:10px;
+    }
+
+    #newControls .header{
+	color:#fff;
+	font-style:italic;
+	font-weight:bold;
+	font-size:11px;
+	margin-bottom:10px;
+    }
+
+    #newControls a{
+	color:#555;
+	margin-bottom:5px;
+	font-size:12px;
+	display:block;
+	margin-right:10px;
+	float:none;
+	width:auto;
+	height:auto;
+    }
+
+    .done > .name #newControls a.complete{
+	text-decoration:line-through;
+    }
+
+    /* Toggle note button text according to .noted status */
+    #newControls a.note span{
+	display:none;
+    }
+
+    #newControls a.note span.addNote{
+	display:inline;
+    }
+
+    .noted > .name #newControls a.note span.editNote{
+	display:inline;
+    }
+
+    .noted > .name #newControls a.note span.addNote{
+	display:none;
+    }
+
+    #newControls hr{
+	margin:5px 0;
+	border:none;
+	border-top:1px solid #bbb
+    }
+
+    #newControls .panel.all{
+	background:#bbb;
+    }
+    
+    .dropTarget{
+	width:100%;
+	height:10px;
+	position:absolute;
+	left:20px;
+	top:0;
+	}
+    
+    .moving #controls ui-draggable-dragging:hover {
+        cursor:move;
+    }
+
+    .highlight{
+	height: 100%;
+	left: -5px;
+	padding: 2px 5px 1px;
+	position: absolute;
+	top: 2px;
+	width: 100%;
+        -moz-border-radius:5px;
+        -webkit-border-radius:5px;
+        -khtml-border-radius:5px;
+	border-radius:5px;
+    }
+
+    .moving > .highlight, .highlighted > .highlight{
+	background: #fafafa;
+    }
+    
+    .moving > .highlight, .highlighted.moveHovered > .highlight{
+	background:#eee;
+    }
+
+    .project > .name #controls #expandButton .expandMinus{
+	display:none;
+    }
+    .project > .name #controls #expandButton .expandPlus{
+	display:inline-block;
+    }
+    .project.open > .name #controls #expandButton .expandMinus{
+	display:inline-block;
+    }
+    .project.open > .name #controls #expandButton .expandPlus{
+	display:none;
+    }
+
+    .task > .name #controls #expandButton{
+	display:none;
+    }
+
+    /* this exists only to overlap the +/- so that we can handle
+       double-click events properly */
+    .project > .name #controls #expandButton .overlappingElement{
+	position:absolute;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+    }
+    
+    #controls #expandButton{
+	position:absolute;
+	top:-2px;
+	left:85px;
+	text-align:center;
+	vertical-align:middle;
+	font-size:18px;
+	height:auto;
+	width:10px;
+	z-index:3;
+    }
+
+    #expandButton:hover, #add:hover, #note:hover, #delete:hover, #complete:hover{
+        opacity:1;
+	filter: alpha(opacity=100);
+	*filter: alpha(opacity=100);
+	text-decoration:none;
+
+    }
+    
+    #controls #add{
+        background:transparent url(/media/i/icons_color.gif);
+        text-indent:-9999px;
+        background-position:-72px 0;
+    }
+    
+    
+    
+    #controls #complete{
+        background:transparent url(/media/i/icons_color.gif);
+        text-indent:-9999px;
+        width:26px;
+    }
+    
+    #controlsRight{
+        right:0;
+        color:#ddd;
+        font-size:30px;
+    }
+    
+    #controlsRight{
+
+    }
+    
+    #controlsBottom{
+        top:100%;
+        margin-top:-1px;
+        padding:2px .4em;
+        font-size:14px;
+        left:5em;
+    }
+                
+    #message, #demo_text{
+        display:none;
+        background-color:#eee;
+        border-bottom:1px solid #aaa;
+        border-top:none;
+        padding:10px 20px;
+        margin:0px -52px;
+        color:#333;
+    }
+
+    #message.errorMessage{
+	background-color:#ffa;
+    }
+
+    #demo_text{
+        display:block;
+    }
+    
+    #message > .messageContent a{
+        color:#000;
+        text-decoration:underline;
+        cursor:pointer;
+    }
+    
+     #message > .close{
+        float:right;
+        color:#666;
+        font-style:italic;
+        margin-bottom:15px;
+        font-size:.7em;
+    }
+    
+    .overDrop{
+        background:#eee;
+    }
+    
+    .controls > a{
+        margin-left:10px;
+    }
+    
+    .parent > .controls{
+        display:none;
+    }
+
+    .name > .content{
+        text-decoration:none;
+	min-height:21px;
+	white-space:pre-wrap;
+    }
+
+    .parent > .name{
+        float:left;
+        margin:5px 0;
+        position:relative;
+        z-index:1;
+    }
+
+    .parent > .progress{
+        display:none;
+    }
+    
+    .selected .project > .name{
+        margin-left:-50px;
+        padding:2px 0 0 75px;
+    }
+
+    .selected .project > .name > .content, .nameEditor > textarea{
+	line-height:21px;
+    }
+
+    .selected > .name > .content, .selectedEditor.nameEditor > textarea{
+	line-height:40px;
+    }
+    
+    .noted.project > .name{
+        padding-bottom:0;
+    }
+    
+    .add{
+        margin-bottom:-1px;
+    }
+    
+    .project > .name{
+        position:relative;
+    }
+    
+    .project{
+        position:relative;
+    }
+
+    .project.parent{
+        border-top:none;
+    }
+    
+    #hidden{
+        display:none;
+    }
+
+    .hidden{
+        display:none;
+    }
+    
+    .addForm{
+        display:none;
+    }
+
+    .bullet{
+        display:none;
+	margin-top:2px;
+	margin-left:1px;
+        height: 18px;
+        width:18px;
+        color:#666;
+	background:#e0e0e0;
+        left:50px;
+	text-indent:5px;
+	font-size:24px;
+	font-family:arial;
+	line-height:18px;
+        position:absolute;
+        z-index:6;
+
+        -moz-border-radius:12px;
+        -webkit-border-radius:12px;
+        -khtml-border-radius:12px;
+	border-radius:12px;
+    }
+    
+    .selected .project .bullet{
+        display:inline-block;
+    }
+
+    .project.task > .name > .bullet, .project.open > .name > .bullet{
+	background-color:transparent;
+    }
+    /* Always show a blue aura around shared projects. */
+    .project.shared > .name > .bullet{
+	background-color:#ccf;
+    }
+
+    .bullet:hover{
+	cursor:pointer;
+	/* Turn off underlines because bullets are anchor tags. */
+	text-decoration:none;
+    }
+    .bullet:hover, .project.task > .name > .bullet:hover, .project.open > .name > .bullet:hover{
+        background-color:#aaa;
+    }
+    .project.shared > .name > .bullet:hover{
+	background-color:#aaf;	
+    }
+
+    .name .content:hover{
+        cursor:text;
+        text-decoration:none;
+    }
+    
+    .parent > .name .content:hover{
+        cursor:pointer;
+        text-decoration:underline;
+    }
+
+    .project.done > .name{
+	/* Assign color to name rather than name > content so that the
+	   content's color can be changed to transparent. */
+        color:#666;
+    }
+    
+    .project.done > .name > .content {
+	/* Need to apply text-decoration directly to content for some reason -
+        otherwise it doesn't copy properly to textareas. */
+        text-decoration:line-through;
+    }
+    
+    a{
+        text-decoration:none;
+        color:inherit;
+    }
+    
+    a:hover{
+        text-decoration:underline;
+        cursor:pointer;
+    }
+    
+    .add{
+        border-bottom:none;
+        color:#666;
+        font-style:italic;
+    }
+        
+    #message > .close:hover{
+        text-decoration:underline;
+        cursor:pointer !important;
+    }
+
+    #workflowy > .children > .project > .completeCheckbox, #workflowy > .children > .project > .controls > .complete.button{
+        display:none;
+    }
+    
+    #workflowy > .children > .project{
+        margin-left:0px;
+    }
+    
+    .selected.project{
+        clear:both;
+    }
+    
+    #demo_text .logo{
+        text-decoration:none;
+        color:#003364;
+        border:none;
+        height:82px;
+        width:461px;
+        text-indent:-9999px;
+        display:inline-block;
+        background:url({{ MEDIA_URL }}i/logo_workflowy_large.png) no-repeat scroll top left;
+        margin:10px 0px 0px 30px;
+    }
+    
+    div#clickToStart{
+        margin:20px 0px 10px;
+    }
+
+    a.register{
+        background:#0056A7;
+        color: white;
+        display: inline-block;
+        padding: 10px 30px;
+        text-decoration: none;
+        -moz-border-radius:30px; 
+        -webkit-border-radius:30px; 
+        -khtml-border-radius:30px;
+        border-radius:30px;
+
+    }
+    
+    a.register:hover{
+        background:#004596;
+    }
+
+.name > .content{
+    position:relative;
+    display:block;
+    letter-spacing:inherit;
+}
+
+.parent > .name > .content{
+    display:inline;
+}
+
+.content{
+    word-wrap:break-word;
+}
+
+div.spacer{
+    display:inline-block;
+    color:#fff;
+    opacity:0;
+    width:0; /* Spacer can't have width or it may cause unwanted line-wrapping. */
+}
+
+#share_buttons{
+    left: 10px;
+    opacity: 0.5;
+    position: absolute;
+    top: 10px;
+    z-index: 0;
+}
+
+#share_buttons:hover{
+    opacity:1;
+    z-index:10;
+}
+
+#facebook_share{
+    margin-bottom:5px;
+}
+
+#tweet_button{
+    background: transparent url(../i/tweet.png) no-repeat;
+    width:55px;
+    height:20px;
+    display:block;
+    text-indent:-9999px;
+}
+
+#leftGradient{
+    background: white url(../i/page_background.png) repeat-y scroll 0px 0px;
+    height: 100%;
+    left: -11px;
+    position: absolute;
+    width: 12px;
+}
+
+#rightGradient{
+    background: white url(../i/page_background.png) repeat-y scroll -948px 0px;
+    height: 100%;
+    right: -11px;
+    position: absolute;
+    width: 12px;
+}
+
+.clear{
+    clear:both;
+}
+
+#printingSiteName{
+    display:none;
+}
+
+#shared_notice{
+    margin:0 -50px;
+    padding:10px 0;
+    background:#4f6171;
+    color:#fff;
+    text-align:center;
+    font-family:Arial;
+    font-size:13px;
+    border-bottom:1px solid #222;
+}
+
+#shared_notice a{
+    text-decoration:underline;
+}
+
+.nameAnimated div{
+    /* Have to convert tag divs to inline. */
+    display:inline;
+}

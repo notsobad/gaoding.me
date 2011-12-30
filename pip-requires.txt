@@ -1,0 +1,5 @@
+redis>=2.4.5
+web.py>=0.36
+pymongo
+jinja2
+simplejson

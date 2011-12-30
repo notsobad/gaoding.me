@@ -1,0 +1,148 @@
+Need soft
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+* Soft
+  * mongodb
+  * RabbitMQ
+* Python package
+  * pymongo
+  * web.py
+  * jinjia2
+  * pika
+
+
+数据库索引
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+> db.jobs.ensureIndex({id:1},{unique: true})
+> db.jobs.ensureIndex({parentid:1}) 
+
+
+
+
+
+抓包结果
+～～～～～～～～～～～～～～
+
+create - edit
+
+
+create
+======================
+POST:
+
+client_id=2011-06-05+05%3A32%3A32.844325&client_version=3&most_recent_operation_transaction_id=4333281&operations=%5B%7B%22type%22%3A%22create%22%2C%22data%22%3A%7B%22projectid%22%3A%222c659ab3-1bc8-5224-3e08-72632d8396ed%22%2C%22parentid%22%3A%22None%22%2C%22priority%22%3A4%7D%2C%22undo_data%22%3Anull%7D%2C%7B%22type%22%3A%22edit%22%2C%22data%22%3A%7B%22projectid%22%3A%222c659ab3-1bc8-5224-3e08-72632d8396ed%22%2C%22name%22%3A%22eeee%22%7D%2C%22undo_data%22%3Anull%7D%2C%7B%22type%22%3A%22create%22%2C%22data%22%3A%7B%22projectid%22%3A%221232ae80-e293-0495-b469-4dcce3599ba9%22%2C%22parentid%22%3A%22None%22%2C%22priority%22%3A5%7D%2C%22undo_data%22%3Anull%7D%5D
+
+
+operations	[{"type":"create","data":{"projectid":"2c659ab3-1bc8-5224-3e08-72632d8396ed","parentid":"None","priority":4},"undo_data":null},{"type":"edit","data":{"projectid":"2c659ab3-1bc8-5224-3e08-72632d8396ed","name":"eeee"},"undo_data":null},{"type":"create","data":{"projectid":"1232ae80-e293-0495-b469-4dcce3599ba9","parentid":"None","priority":5},"undo_data":null}]
+
+RESP:
+{"error_encountered": false, "new_most_recent_operation_transaction_id": "4333289", "new_polling_interval_in_ms": 30000, "concurrent_remote_operation_transactions": [], "error_encountered_in_remote_operations": false}
+
+
+
+edit
+=================
+
+http://workflowy.com/run_operations
+
+POST:
+
+client_id=2011-06-05+04%3A43%3A23.062523&client_version=3&most_recent_operation_transaction_id=4332473&operations=%5B%7B%22type%22%3A%22edit%22%2C%22data%22%3A%7B%22projectid%22%3A%229bb718b1-a755-cace-6e06-2e36ab46c495%22%2C%22name%22%3A%2218.29%22%7D%2C%22undo_data%22%3Anull%7D%2C%7B%22type%22%3A%22uncomplete%22%2C%22data%22%3A%7B%22projectid%22%3A%229bb718b1-a755-cace-6e06-2e36ab46c495%22%7D%2C%22undo_data%22%3Anull%7D%5D
+
+client_id	2011-06-05 04:43:23.062523
+client_version	3
+most_recent_operation_tra...	4332473
+operations	[{"type":"edit","data":{"projectid":"9bb718b1-a755-cace-6e06-2e36ab46c495","name":"18.29"},"undo_data":null},{"type":"uncomplete","data":{"projectid":"9bb718b1-a755-cace-6e06-2e36ab46c495"},"undo_data":null}]
+
+RESP:
+{"error_encountered": false, "new_most_recent_operation_transaction_id": "4333047", "new_polling_interval_in_ms": 30000, "concurrent_remote_operation_transactions": [], "error_encountered_in_remote_operations": false}
+
+
+
+finish job
+===========
+
+POST:
+client_id=2011-06-05+05%3A32%3A32.844325&client_version=3&most_recent_operation_transaction_id=4333047&operations=%5B%7B%22type%22%3A%22complete%22%2C%22data%22%3A%7B%22projectid%22%3A%22614ed58d-cdef-a2a7-a22f-b8c2d0718e3d%22%7D%2C%22undo_data%22%3Anull%7D%5D
+
+
+RESP:
+{"error_encountered": false, "new_most_recent_operation_transaction_id": "4333115", "new_polling_interval_in_ms": 10000, "concurrent_remote_operation_transactions": [], "error_encountered_in_remote_operations": false}
+
+
+delete job
+====================
+
+POST:
+client_id=2011-06-05+05%3A32%3A32.844325&client_version=3&most_recent_operation_transaction_id=4333115&operations=%5B%7B%22type%22%3A%22delete%22%2C%22data%22%3A%7B%22projectid%22%3A%22614ed58d-cdef-a2a7-a22f-b8c2d0718e3d%22%7D%2C%22undo_data%22%3A%7B%22parentid%22%3A%22None%22%2C%22priority%22%3A2%7D%7D%5D
+
+operations	[{"type":"delete","data":{"projectid":"614ed58d-cdef-a2a7-a22f-b8c2d0718e3d"},"undo_data":{"parentid":"None","priority":2}}]
+
+RESP:
+{"error_encountered": false, "new_most_recent_operation_transaction_id": "4333126", "new_polling_interval_in_ms": 10000, "concurrent_remote_operation_transactions": [], "error_encountered_in_remote_operations": false}
+
+
+add note
+==================
+POST:
+client_id=2011-06-05+05%3A32%3A32.844325&client_version=3&most_recent_operation_transaction_id=4333126&operations=%5B%7B%22type%22%3A%22edit%22%2C%22data%22%3A%7B%22projectid%22%3A%22d83a7b8f-b2d8-938c-39fd-76a57a9a99d6%22%2C%22description%22%3A%22wtf%3F%22%7D%2C%22undo_data%22%3Anull%7D%5D
+
+operations	[{"type":"edit","data":{"projectid":"d83a7b8f-b2d8-938c-39fd-76a57a9a99d6","description":"wtf?"},"undo_data":null}]
+
+{"error_encountered": false, "new_most_recent_operation_transaction_id": "4333146", "new_polling_interval_in_ms": 10000, "concurrent_remote_operation_transactions": [], "error_encountered_in_remote_operations": false}
+
+缩进 move
+===================
+POST：
+client_id=2011-06-05+05%3A32%3A32.844325&client_version=3&most_recent_operation_transaction_id=4333146&operations=%5B%7B%22type%22%3A%22move%22%2C%22data%22%3A%7B%22projectid%22%3A%22d83a7b8f-b2d8-938c-39fd-76a57a9a99d6%22%2C%22parentid%22%3A%2255f81932-4a7e-acfb-6ce3-e72796bda868%22%2C%22priority%22%3A0%7D%2C%22undo_data%22%3A%7B%22previous_parentid%22%3A%22None%22%2C%22previous_priority%22%3A1%7D%7D%5D&project_expansions_delta=%7B%2255f81932%22%3Atrue%7D
+
+
+operations	[{"type":"move","data":{"projectid":"d83a7b8f-b2d8-938c-39fd-76a57a9a99d6","parentid":"55f81932-4a7e-acfb-6ce3-e72796bda868","priority":0},"undo_data":{"previous_parentid":"None","previous_priority":1}}]
+project_expansions_delta	{"55f81932":true}
+
+RESP：
+{"error_encountered": false, "new_most_recent_operation_transaction_id": "4333204", "new_polling_interval_in_ms": 30000, "concurrent_remote_operation_transactions": [], "error_encountered_in_remote_operations": false}
+
+
+
+反向缩进
+============================
+POST:
+client_id=2011-06-05+05%3A32%3A32.844325&client_version=3&most_recent_operation_transaction_id=4333204&operations=%5B%7B%22type%22%3A%22move%22%2C%22data%22%3A%7B%22projectid%22%3A%22d83a7b8f-b2d8-938c-39fd-76a57a9a99d6%22%2C%22parentid%22%3A%22None%22%2C%22priority%22%3A1%7D%2C%22undo_data%22%3A%7B%22previous_parentid%22%3A%2255f81932-4a7e-acfb-6ce3-e72796bda868%22%2C%22previous_priority%22%3A0%7D%7D%5D
+
+operations	[{"type":"move","data":{"projectid":"d83a7b8f-b2d8-938c-39fd-76a57a9a99d6","parentid":"None","priority":1},"undo_data":{"previous_parentid":"55f81932-4a7e-acfb-6ce3-e72796bda868","previous_priority":0}}]
+
+
+RESP:
+{"error_encountered": false, "new_most_recent_operation_transaction_id": "4333241", "new_polling_interval_in_ms": 30000, "concurrent_remote_operation_transactions": [], "error_encountered_in_remote_operations": false}
+
+标记为未完成
+====================
+
+POST:
+client_id=2011-06-05+11%3A16%3A39.977450&client_version=3&most_recent_operation_transaction_id=4339409&operations=%5B%7B%22type%22%3A%22uncomplete%22%2C%22data%22%3A%7B%22projectid%22%3A%2232dfbbc8-b561-1b05-729f-2c2e7501bde1%22%7D%2C%22undo_data%22%3Anull%7D%5D
+
+operations	[{"type":"uncomplete","data":{"projectid":"32dfbbc8-b561-1b05-729f-2c2e7501bde1"},"undo_data":null}]
+
+{"error_encountered": false, "new_most_recent_operation_transaction_id": "4339426", "new_polling_interval_in_ms": 30000, "concurrent_remote_operation_transactions": [], "error_encountered_in_remote_operations": false}
+
+
+标记为完成
+=======================
+
+POST:
+client_id=2011-06-05+11%3A16%3A39.977450&client_version=3&most_recent_operation_transaction_id=4339426&operations=%5B%7B%22type%22%3A%22complete%22%2C%22data%22%3A%7B%22projectid%22%3A%2232dfbbc8-b561-1b05-729f-2c2e7501bde1%22%7D%2C%22undo_data%22%3Anull%7D%5D
+
+
+operations	[{"type":"complete","data":{"projectid":"32dfbbc8-b561-1b05-729f-2c2e7501bde1"},"undo_data":null}]
+
+
+RESP:
+{"error_encountered": false, "new_most_recent_operation_transaction_id": "4339452", "new_polling_interval_in_ms": 30000, "concurrent_remote_operation_transactions": [], "error_encountered_in_remote_operations": false}
+
+
+多条操作
+================================
+POST：
+
+	[{"type":"create","data":{"projectid":"1093ac76-b942-b00a-0336-af0434c1dc34","parentid":"5fc6988d-6e04-dc79-5683-8123b619846a","priority":7},"undo_data":null},{"type":"edit","data":{"projectid":"9c94a804-e1a3-d9c4-9655-b620eb25dc7a","name":"hack alert haha haha2 haha3"},"undo_data":null},{"type":"create","data":{"projectid":"903b46f2-d4a6-f100-4ade-d4464b567502","parentid":"5fc6988d-6e04-dc79-5683-8123b619846a","priority":8},"undo_data":null},{"type":"edit","data":{"projectid":"1093ac76-b942-b00a-0336-af0434c1dc34","name":"aaa"},"undo_data":null},{"type":"edit","data":{"projectid":"903b46f2-d4a6-f100-4ade-d4464b567502","name":"bbb"},"undo_data":null}]

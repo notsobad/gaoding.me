@@ -1,0 +1,35 @@
+.addPrompt, .button, #header, #share_buttons, #helpButton, .editor.fixed, .editor, #controls, .parent > .name {display: none !important;}
+.bullet{text-indent: 0px !important;}
+#leftGradient, #rightGradient {display: none;}
+#visible {
+    width:auto;
+    border:none;
+
+    /* Need to set margins with !important because they're set manually by
+       the JS. */
+    margin-left:auto !important;
+    margin-right:auto !important;
+}
+.content.editing{
+    color:inherit !important;
+}
+
+#workflowy{
+    min-height:0px;
+    padding-bottom:25px;
+}
+
+.children{
+    border-left:none;
+}
+
+#printingSiteName{
+    display:block;
+    float:right;
+    font-size:.7em;
+    color:#666;
+    font-family:arial;
+}
+
+
+
